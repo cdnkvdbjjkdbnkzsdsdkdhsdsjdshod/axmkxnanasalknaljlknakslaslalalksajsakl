@@ -374,7 +374,7 @@ $ping - رؤية سرعة اتصالك :stopwatch:
 $mcstats - يعطيك معلومات لأي سيرفر ماين كرافتي :crossed_swords: 
 $serch - للبحث عن اسم شخص معك بالسيرفر :battery: 
 $channels - لرؤية رومات السيرفر :urn: 
-$short - لأختصار الروابط  :link: 
+$at - لكتابة ما تكتبة في انجاز ماين كرافتي :hole: 
 $color - لأختيار لونك في السيرفر :heart: 
         **
         `)
@@ -396,7 +396,7 @@ $clear - مسح الشات :hourglass_flowing_sand:
 $role - لأعطاء رتبة لـ أحد الأعضاء :key: 
 $rerole - لآزالة الرتبة من أحد الاعضاء 
 $move - لنقل الاعضاء الي رومك  :scales: 
-        
+
   **      `)
     message.author.send(embed)
 }
@@ -414,6 +414,36 @@ Other's :briefcase:
   **      `)
     message.author.send(embed)
 }
+});
+
+
+const sql = require("sqlite");
+client.on("message", async message => {
+    if (message.content.startsWith(prefix + "at")) {
+         var ids = [
+            "20",
+            "1",
+            "13",
+            "18",
+            "17",
+            "9",
+            "31",
+            "22",
+            "23",
+            "2",
+            "11",
+            "19",
+            "24",
+            "25",
+            "12",
+            "33"
+            ]
+            const randomizer = Math.floor(Math.random()*ids.length);
+            const args = message.content.split(" ").slice(1).join(" ")
+    if (!args) return message.channel.send("**. اكتب محتوي الانجاز**");
+    const image = new Discord.Attachment(`https://www.minecraftskinstealer.com/achievement/a.php?i=${ids[randomizer]}&h=Achievement Get!&t=${args}`, "achievement.png");
+message.channel.send(image)
+    }
 });
 
 client.on('guildCreate', guild => {
