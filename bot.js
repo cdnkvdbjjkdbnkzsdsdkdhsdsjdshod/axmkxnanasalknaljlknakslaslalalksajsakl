@@ -159,7 +159,36 @@ client.on('message', message => {
     });
 
 
+let rebel;
+client.on("ready", async  => {
+  let i;
+  rebel=0;
+if(!check.voiceChannelID){
+}else{
+  rebel++;
+}
+  client.setInterval(() =>{
+    let d = Date.now()
+  }, 5000);
+});
+client.on('voiceStateUpdate', (oldMember, newMember) => {
+let newUserChannel = newMember.voiceChannel
+let oldUserChannel = oldMember.voiceChannel
+ if(oldUserChannel === undefined && newUserChannel !== undefined) {
+   rebel++;
+} else if(newUserChannel === undefined){
+  rebel--;
+}
+})
+client.on('message', message => {
+if (message.content.startsWith("$cvoice")) {
+         if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply("You Don't Have `MANAGE_CHANNELS` Premissions ");
+     let args = message.content.split(" ").slice(1)
 
+ message.guild.createChannel(`${rebel}`, `voice`);
+ message.channel.sendMessage('تـم إنـشاء روم صـوتي')
+}
+});
 
 client.on("message",function(message) {
     if(message.content.startsWith(prefix + 'stats')) {
