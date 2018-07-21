@@ -227,7 +227,43 @@ var heroo = new Discord.RichEmbed()
 }
 });
 
+client.on('message', message => {
+          let args = message.content.split(' ').slice(1);
+   if(message.content.split(' ')[0] == '$color'){
+           const embedd = new Discord.RichEmbed()
+     .setFooter('Requested by '+message.author.username, message.author.avatarURL)
+   .setDescription(`**لا يوجد لون بهذا الأسم ** :x: `)
+   .setColor(`ff0000`)
 
+    if(!isNaN(args) && args.length > 0)
+    
+
+if    (!(message.guild.roles.find("name",`${args}`))) return  message.channel.sendEmbed(embedd);
+
+
+       var a = message.guild.roles.find("name",`${args}`)
+                if(!a)return;
+const embed = new Discord.RichEmbed()
+                    
+     .setFooter('Requested by '+message.author.username, message.author.avatarURL)
+   .setDescription(`**Done , تم تغير لونك . :white_check_mark: **`)
+ 
+   .setColor(`${a.hexColor}`)
+  message.channel.sendEmbed(embed);
+          if (!args)return;
+setInterval(function(){})
+                  let count = 0;
+                  let ecount = 0;
+        for(let x = 1; x < 201; x++){
+           
+            message.member.removeRole(message.guild.roles.find("name",`${x}`))
+          
+            }
+                message.member.addRole(message.guild.roles.find("name",`${args}`));
+        
+            
+    }
+});
 client.on('message', ra3d => {
   
   if (ra3d.content ===  prefix + 'cc'){
@@ -339,6 +375,7 @@ $mcstats - يعطيك معلومات لأي سيرفر ماين كرافتي :cr
 $serch - للبحث عن اسم شخص معك بالسيرفر :battery: 
 $channels - لرؤية رومات السيرفر :urn: 
 $short - لأختصار الروابط  :link: 
+$color - لأختيار لونك في السيرفر :heart: 
         **
         `)
     message.author.send(embed)
@@ -356,10 +393,9 @@ $kick - أمر الباند  :outbox_tray:
 $cc - صنع ألوان :heart:
 $bc - البرودكاست :mega:
 $clear - مسح الشات :hourglass_flowing_sand: 
-$move - لنقل الاعضاء الي الروم الخاص بك  :warning:
 $role - لأعطاء رتبة لـ أحد الأعضاء :key: 
 $rerole - لآزالة الرتبة من أحد الاعضاء :unamused: 
-
+$move - لنقل الاعضاء الي الروم الخاص بك :scales: 
         
   **      `)
     message.author.send(embed)
