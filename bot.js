@@ -337,6 +337,8 @@ $allbots - رؤية جميع بوتات السيرفر :robot:
 $ping - رؤية سرعة اتصالك :stopwatch:  
 $mcstats - يعطيك معلومات لأي سيرفر ماين كرافتي :crossed_swords: 
 $serch - للبحث عن اسم شخص معك بالسيرفر :battery: 
+$channels - لرؤية رومات السيرفر :urn: 
+$short - لأختصار الروابط  :link: 
         **
         `)
     message.author.send(embed)
@@ -354,13 +356,23 @@ $kick - أمر الباند  :outbox_tray:
 $cc - صنع ألوان :heart:
 $bc - البرودكاست :mega:
 $clear - مسح الشات :hourglass_flowing_sand: 
-$move - لنقل الاعضاء الي الروم الخاص بك :warning:
-**
+$move - لنقل الاعضاء الي الروم الخاص بك  :warning:
+$role - لأعطاء رتبة لـ أحد الأعضاء :key: 
+$rerole - لآزالة الرتبة من أحد الاعضاء :unamused: 
+
         
-        `)
+  **      `)
     message.author.send(embed)
 }
 });
+
+client.on('guildCreate', guild => {
+  var embed = new Discord.RichEmbed()
+  .setColor(0x5500ff)
+  .setDescription(`**شكراً لك لإضافه البوت الى سيرفرك**`)
+      guild.owner.send(embed)
+});
+
 
   client.on('message', message => {
     if (message.content.startsWith("$tr")) {
@@ -405,8 +417,87 @@ $move - لنقل الاعضاء الي الروم الخاص بك :warning:
     });
     }
 });
-  
+  client.on('message',async message =>{ 
+    if(message.content.startsWith(prefix + "channels")) {
+        let i = 1;
+        let embed = new Discord.RichEmbed()
+        .setAuthor(message.author.username, message.author.avatarURL)
+        .setTitle(message.guild.name)
+        .setThumbnail(message.guild.iconURL)
+        .setDescription(message.guild.channels.map(c => `\`${i++}\` - **${c.name}**`))
+        .setFooter(message.guild.channels.size + ' Channels in the server!');
+        message.channel.send(embed).then(msg => {
+            msg.delete(25000);
+            message.delete(25000);
+        });
+    }
+});
 
+
+client.on('message', message => { 
+
+ let args = message.content.split(' ').slice(1);
+    if(message.content.startsWith(prefix + 'short')) {
+    if(!message.channel.guild) return;  
+
+        googl.setKey('AIzaSyC2Z2mZ_nZTcSvh3QvIyrmOIFP6Ra6co6w');
+        googl.getKey();
+        googl.shorten(args.join(' ')).then(shorturl => {
+            message.channel.send(''+shorturl)
+        }).catch(e=>{
+            console.log(e.message);
+            message.channel.send('Error!');
+        });
+}
+});
+
+client.on("message", message => {
+
+	var args = message.content.split(' ').slice(1); 
+	var msg = message.content.toLowerCase();
+	if( !message.guild ) return;
+	if( !msg.startsWith( prefix + 'role' ) ) return;
+	if(!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(' **__ليس لديك صلاحيات__**');
+	if( msg.toLowerCase().startsWith( prefix + 'rerole' ) ){
+		if( !args[0] ) return message.reply( '**:x: يرجى وضع الشخص المراد سحب منه الرتبة**' );
+		if( !args[1] ) return message.reply( '**:x: يرجى وضع الرتبة المراد سحبها من الشخص**' );
+		var role = msg.split(' ').slice(2).join(" ").toLowerCase(); 
+		var role1 = message.guild.roles.filter( r=>r.name.toLowerCase().indexOf(role)>-1 ).first(); 
+		if( !role1 ) return message.reply( '**:x: يرجى وضع الرتبة المراد سحبها من الشخص**' );if( message.mentions.members.first() ){
+			message.mentions.members.first().removeRole( role1 );
+			return message.reply('**:white_check_mark: [ '+role1.name+' ] رتبة [ '+args[0]+' ] تم سحب من **');
+		}
+		if( args[0].toLowerCase() == "all" ){
+			message.guild.members.forEach(m=>m.removeRole( role1 ))
+			return	message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من الكل رتبة**');
+		} else if( args[0].toLowerCase() == "bots" ){
+			message.guild.members.filter(m=>m.user.bot).forEach(m=>m.removeRole(role1))
+			return	message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من البوتات رتبة**');
+		} else if( args[0].toLowerCase() == "humans" ){
+			message.guild.members.filter(m=>!m.user.bot).forEach(m=>m.removeRole(role1))
+			return	message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من البشريين رتبة**');
+		} 	
+	} else {
+		if( !args[0] ) return message.reply( '**:x: يرجى وضع الشخص المراد اعطائها الرتبة**' );
+		if( !args[1] ) return message.reply( '**:x: يرجى وضع الرتبة المراد اعطائها للشخص**' );
+		var role = msg.split(' ').slice(2).join(" ").toLowerCase(); 
+		var role1 = message.guild.roles.filter( r=>r.name.toLowerCase().indexOf(role)>-1 ).first(); 
+		if( !role1 ) return message.reply( '**:x: يرجى وضع الرتبة المراد اعطائها للشخص**' );if( message.mentions.members.first() ){
+			message.mentions.members.first().addRole( role1 );
+			return message.reply('**:white_check_mark: [ '+role1.name+' ] رتبة [ '+args[0]+' ] تم اعطاء **');
+		}
+		if( args[0].toLowerCase() == "all" ){
+			message.guild.members.forEach(m=>m.addRole( role1 ))
+			return	message.reply('**:white_check_mark: [ '+role1.name+' ] تم اعطاء الكل رتبة**');
+		} else if( args[0].toLowerCase() == "bots" ){
+			message.guild.members.filter(m=>m.user.bot).forEach(m=>m.addRole(role1))
+			return	message.reply('**:white_check_mark: [ '+role1.name+' ] تم اعطاء البوتات رتبة**');
+		} else if( args[0].toLowerCase() == "humans" ){
+			message.guild.members.filter(m=>!m.user.bot).forEach(m=>m.addRole(role1))
+			return	message.reply('**:white_check_mark: [ '+role1.name+' ] تم اعطاء البشريين رتبة**');
+		} 
+	} 
+});
 client.on('message', message => {
             if(!message.channel.guild) return;
 var args = message.content.split(' ').slice(1).join(' ');
