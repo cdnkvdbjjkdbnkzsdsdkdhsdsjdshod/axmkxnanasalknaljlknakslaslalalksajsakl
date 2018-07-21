@@ -395,7 +395,21 @@ $bc - البرودكاست :mega:
 $clear - مسح الشات :hourglass_flowing_sand: 
 $role - لأعطاء رتبة لـ أحد الأعضاء :key: 
 $rerole - لآزالة الرتبة من أحد الاعضاء :unamused: 
-$move - لنقل الاعضاء الي الروم الخاص بك :scales: 
+$move - لنقل الاعضاء الي رومك  :scales: 
+        
+  **      `)
+    message.author.send(embed)
+}
+});
+
+client.on('message', message => {
+    if(message.content.startsWith('$help')) {
+   const embed = new Discord.RichEmbed()
+.setColor('RANDOM')
+        .setDescription(`**
+Other's :briefcase:
+لدعوة البوت - $inv :pen_fountain: 
+أو من خلال الرابط : https://discordapp.com/oauth2/authorize/?permissions=268443710&scope=bot&client_id=465885551329804288  :sparkles: 
         
   **      `)
     message.author.send(embed)
