@@ -394,7 +394,7 @@ $cc - صنع ألوان :heart:
 $bc - البرودكاست :mega:
 $clear - مسح الشات :hourglass_flowing_sand: 
 $role - لأعطاء رتبة لـ أحد الأعضاء :key: 
-$rerole - لآزالة الرتبة من أحد الاعضاء :unamused: 
+$rerole - لآزالة الرتبة من أحد الاعضاء 
 $move - لنقل الاعضاء الي رومك  :scales: 
         
   **      `)
