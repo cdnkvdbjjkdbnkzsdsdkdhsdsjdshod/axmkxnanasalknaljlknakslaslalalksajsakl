@@ -32,6 +32,21 @@ const moment = require('moment');
 
 
 //////////////////////////////////////////////iyvu
+client.on('message',async message => {
+  if(message.content.toLowerCase() === prefix + "crooms") {
+    if(!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply('انت لا تملك البرمشنات');
+    if(!message.guild.member(client.user).hasPermission('MANAGE_CHANNELS')) return message.reply('انا لا املك البرمشنات يجب توفر `Manage Channels`');
+    let c = message.guild.channels.filter(c => c.name === 'TL is here');
+    message.channel.send(`**:white_check_mark: جاري حذف __${c.size}__ من الرومات الغير مرغوب بها**`).then(msg => {
+      setTimeout(() => {
+        msg.edit(`**:white_check_mark: تم حذف ${c.size} من الرومات الغير مرغوب بها**`);
+      },3000);
+    });
+    c.forEach(d => {
+      d.delete();
+    });
+  }
+});
 
 const developers = ["456641975932813345"]
 const adminprefix = "!";
