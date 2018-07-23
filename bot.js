@@ -381,11 +381,13 @@ client.on('message', message => {
     }
 });
 
+
 client.on('message', message => {
     if(message.content.startsWith('$help')) {
    const embed = new Discord.RichEmbed()
 .setColor('RANDOM')
         .setDescription(`**
+
         
 ╭━━━╮╭━━╮╱╱╱╭╮
 ┃╭━╮┃┃╭╮┃╱╱╭╯╰╮
@@ -397,16 +399,8 @@ Support : https://discord.gg/7XpHbqP
 :black_medium_square: Servers : ${client.guilds.size}
 :black_medium_square: Users : ${client.users.size}
 By , <@456641975932813345> - <@323885452207587329> 
-<@406143689984049152> - <@352139023348924418> - <@298732816995319809> .**
-        `)
-    message.author.send(embed)
-}
-});
-client.on('message', message => {
-    if(message.content.startsWith('$help')) {
-   const embed = new Discord.RichEmbed()
-.setColor('RANDOM')
-        .setDescription(`**
+<@406143689984049152> - <@352139023348924418> - <@298732816995319809> .
+
 General's Commands. :earth_asia: 
 $server - معلومات عن سيرفرك :scroll:   
 $user - معلومات عن حسابك :id: 
@@ -554,7 +548,7 @@ client.on('message', message => {
         .setDescription(`**
 Admin's Commands. :wrench: 
 $ban - أمر الباند :no_entry:
-$kick - أمر الباند  :outbox_tray:
+$kick - أمر الكيك  :outbox_tray:
 $cc - صنع ألوان :heart:
 $bc - البرودكاست :mega:
 $clear - مسح الشات :hourglass_flowing_sand: 
@@ -680,22 +674,7 @@ client.on('guildCreate', guild => {
 });
 
 
-client.on('message', message => { 
 
- let args = message.content.split(' ').slice(1);
-    if(message.content.startsWith(prefix + 'short')) {
-    if(!message.channel.guild) return;  
-
-        googl.setKey('AIzaSyC2Z2mZ_nZTcSvh3QvIyrmOIFP6Ra6co6w');
-        googl.getKey();
-        googl.shorten(args.join(' ')).then(shorturl => {
-            message.channel.send(''+shorturl)
-        }).catch(e=>{
-            console.log(e.message);
-            message.channel.send('Error!');
-        });
-}
-});
 
 client.on("message", message => {
 
@@ -1118,32 +1097,82 @@ message.react("❌")
 });
 
 
-const math = require('math-expression-evaluator');
-const stripIndents = require('common-tags').stripIndents;
-
-client.on('message', msg => {
-if (msg.content.startsWith(prefix + 'cal')) {
-  let args = msg.content.split(" ").slice(1);
-      const question = args.join(' ');
-  if (args.length < 1) {
-      msg.reply('**من فضلك .. قم بكتابة سؤال **.');
+   const math = require('math-expression-evaluator');   
+client.on('message', message => {
+if (message.content.startsWith(prefix + 'calc')) {
+    if(!message.channel.guild) return message.reply(' Error : \` Guild Command \`');
+           var Canvas = module.require('canvas');
+           var jimp = module.require('jimp');
+   
+    const w = ['./math.png'];
+   
+            let Image = Canvas.Image,
+                canvas = new Canvas(802, 404),
+                ctx = canvas.getContext('2d');
+            ctx.patternQuality = 'bilinear';
+            ctx.filter = 'bilinear';
+            ctx.antialias = 'subpixel';
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+            ctx.shadowOffsetY = 2;
+            ctx.shadowBlur = 2;
+            fs.readFile(`${w[Math.floor(Math.random() * w.length)]}`, function (err, Background) {
+                if (err) return console.log(err);
+                let BG = Canvas.Image;
+                let ground = new Image;
+                ground.src = Background;
+                ctx.drawImage(ground, 0, 0, 802, 404);
+   
+    })
+        let args = message.content.split(" ").slice(1);
+       const question = args.join(' ');
+   if (args.length < 1) {
+       message.reply('Specify a equation, please.\n\ Ex: #calc 5+5 ' );
 } else {    let answer;
-  try {
-      answer = math.eval(question);
-  } catch (err) {
-      return msg.reply(`Error: ${err}`);
-  }
+   try {
+       answer = math.eval(question);
+   } catch (err) {
+       message.reply(`Error: ${err}`);
+   }
+var ment = message.mentions.users.first();
+           var getvalueof;
+           if(ment) {
+             getvalueof = ment;
+           } else {
+             getvalueof = message.author;
+           }
+                                          let url = getvalueof.displayAvatarURL.endsWith(".webp") ? getvalueof.displayAvatarURL.slice(5, -20) + ".png" : getvalueof.displayAvatarURL;
+                                            jimp.read(url, (err, ava) => {
+                                                if (err) return console.log(err);
+                                                ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
+                                                    if (err) return console.log(err);
+                                                                             
+                           
+                                                    ctx.font = '42px Arial Bold';//Name ,_,
+                                                    ctx.fontSize = '50px';
+                                                    ctx.fillStyle = "#ffffff";
+                                                    ctx.fillText(`${answer}`,108, 130);
+                                                    
+                                                    
+                                                     ctx.font = '25px Arial Bold';//Name ,_,
+                                                    ctx.fontSize = '30px';
+                                                    ctx.fillStyle = "#ffffff";
+                                                    ctx.fillText(`${question}`,105, 90);
 
-  const embed = new Discord.RichEmbed()
-  .setThumbnail('https://banner2.kisspng.com/20180215/ade/kisspng-office-supplies-animation-calculator-5a85e764e3aa68.4914103215187249649325.jpg')
-.setDescription(`**
- السؤال يقولك :thinking:  : ${question}
- طبعا الاجابة :writing_hand: : ${answer}**
-`)
-  msg.channel.send(embed)
-  }
-};
+                           
+                                ctx.beginPath();
+                                ctx.stroke();
+                              message.channel.sendFile(canvas.toBuffer());
+                           
+                           
+                         
+                           
+                            })
+                           
+                            })
+}
+}
 });
+   
 
 
 
