@@ -99,6 +99,14 @@ let Embed = new Discord.RichEmbed()
    }
 }); 
 
+client.on('message',async message => {
+  if(message.content.startsWith(prefix + "roles")) {
+        message.channel.send(`${message.guild.roles.size} Roles in the server\n`+'**```\n'+message.guild.roles.map(r =>`- ${r.name}  ( ${r.members.size} members )`).join('\n')+'```**').then(msg => {
+            msg.delete(9000);
+            message.delete(9000);
+        });
+  }
+});
 
   client.on('message', async message => {
   let messageArray = message.content.split(' ');
