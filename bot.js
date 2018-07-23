@@ -561,6 +561,7 @@ $clear - مسح الشات :hourglass_flowing_sand:
 $role - لأعطاء رتبة لـ أحد الأعضاء :key: 
 $rerole - لآزالة الرتبة من أحد الاعضاء 
 $move - لنقل الاعضاء الي رومك  :scales: 
+$crooms - لحذف اي روم صوتي اسمه \`TL is here\`
 
   **      `)
     message.author.send(embed)
