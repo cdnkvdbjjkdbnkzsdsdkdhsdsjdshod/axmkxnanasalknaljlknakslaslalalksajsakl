@@ -32,21 +32,7 @@ const moment = require('moment');
 
 
 //////////////////////////////////////////////iyvu
-client.on('message',async message => {
-  if(message.content.toLowerCase() === prefix + "crooms") {
-    if(!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply('انت لا تملك البرمشنات');
-    if(!message.guild.member(client.user).hasPermission('MANAGE_CHANNELS')) return message.reply('انا لا املك البرمشنات يجب توفر `Manage Channels`');
-    let c = message.guild.channels.filter(c => c.name === 'TL is here');
-    message.channel.send(`**:white_check_mark: جاري حذف __${c.size}__ من الرومات الغير مرغوب بها**`).then(msg => {
-      setTimeout(() => {
-        msg.edit(`**:white_check_mark: تم حذف ${c.size} من الرومات الغير مرغوب بها**`);
-      },3000);
-    });
-    c.forEach(d => {
-      d.delete();
-    });
-  }
-});
+
 
 const developers = ["456641975932813345"]
 const adminprefix = "!";
@@ -90,12 +76,12 @@ client.on('message', message => {
 let Embed = new Discord.RichEmbed()
         .setColor(0x36393e);
     if (!args[0]) {
-        Embed.setFooter(`**للأستعمال : $serch [ Letter ].**`);
+        Embed.setFooter(`**للأستعمال : $search [ Letter ].**`);
         return message.channel.send(Embed); 
     }
 
     if (args[0].length <= 1) {
-        Embed.setFooter(`للأستعمال : $serch [ Letter ].`);
+        Embed.setFooter(`للأستعمال : $search [ Letter ].`);
         return message.channel.send(Embed); 
     }
     let array = []; 
@@ -313,7 +299,7 @@ setInterval(function(){})
         client.on('message', message => {
                         let args = message.content.split(" ").slice(1).join(" ")
 if(message.content.startsWith(prefix + 'cc')) {
-    if(!args) return message.channel.send('`يرجي اختيار كم لون `');
+    if(!args) return message.channel.send('**اختر عدد الألوان :writing_hand: **');
              if (!message.member.hasPermission('MANAGE_ROLES')) returnmessage.channel.sendMessage('`**⚠ | `[MANAGE_ROLES]` لا يوجد لديك صلاحية**'); 
               message.channel.send(`**✅ |Created __${args}__ Colors**`);
                   setInterval(function(){})
@@ -396,15 +382,10 @@ client.on('message', message => {
 ╰━━╮┃┃╭━╮┃╭╮┃┃
 ┃╰━╯┃┃╰━╯┃╰╯┃╰╮
 ╰━━━╯╰━━━┻━━┻━╯
-Support : https://discord.gg/7XpHbqP 
-:black_medium_square: Servers : ${client.guilds.size}
-:black_medium_square: Users : ${client.users.size}
-By , <@456641975932813345> - <@323885452207587329> 
-<@406143689984049152> - <@352139023348924418> - <@298732816995319809> .
 
 General's Commands. :earth_asia: 
 $server - معلومات عن سيرفرك :scroll:   
-$user - معلومات عن حسابك :id: 
+$id - الأيدي حقك :flashlight: 
 $avatar - صورة بروفايلك الشخصي :frame_photo: 
 $time - الوقت الحالي - السعودية فقط :flag_sa: 
 $sar7 - لمصارحة شخص  :flushed: 
@@ -415,8 +396,7 @@ $ping - رؤية سرعة اتصالك :stopwatch:
 $mcstats - يعطيك معلومات لأي سيرفر ماين كرافتي :crossed_swords: 
 $serch - للبحث عن اسم شخص معك بالسيرفر :battery: 
 $channels - لرؤية رومات السيرفر :urn: 
-$at - لكتابة ما تكتبة في انجاز ماين كرافتي :hole: 
-$ft - رؤية احصائياتك في فورتنايت :lizard: 
+$at - لكتابة ما تكتبة في انجاز ماين كرافتي :hole:
 $color - لأختيار لونك في السيرفر :heart: 
 $invite - معلومات عن الدعوة :soccer: 
         **
@@ -426,121 +406,7 @@ $invite - معلومات عن الدعوة :soccer:
 });
 
 
-client.on('message', async message => {
-      //!fortnite Ninja solo pc
-  let Client = require('fortnite');
-  let fortnite = new Client('2bb97881-c068-4cba-b3b5-152abfc71c83');
-  let messageArray = message.content.split(" ");
-  let cmd = messageArray[0];
-  let args = messageArray.slice(1);
-    if(message.content.startsWith(prefix + "ft")) {
-        let username = args[0];
-        let platform = args[2] || 'pc';
-        let gamemode = args[1];
-        if(gamemode != 'solo' && gamemode != 'duo' && gamemode != 'squad' && gamemode != 'lifetime') return message.reply(`**طريقة الاستخدام : ${prefix}fortnite username mode platform**`);
-        
-    if(!username) return message.reply('**Specify a username!**');
-    
-    let data = fortnite.user(username, platform).then(data => {
-        let stats = data.stats;
-        
-        if(gamemode === 'solo') {
-            let solostats = stats.solo;
-            let score = solostats.score;
-            let kd = solostats.kd;
-            let matches = solostats.matches;
-            let kills = solostats.kills;
-            let wins = solostats.wins;
-            let top3 = solostats.top_3;
 
-            let ByEmbed = new Discord.RichEmbed()
-            .setAuthor('Forntite Tracker Solo Stats')
-            .setTitle(data.username+"'s Stats")
-            .setColor("RANDOM")
-            .setThumbnail("https://www.teepublic.com/t-shirt/2412274-fortnite-logo-game-t-shirts")
-            .addField('# | Wins:',wins,true)
-            .addField('# | Kills:',kills,true)
-            .addField('# | Score:',score,true)
-            .addField("# | Matches:",matches,true)
-            .addField("# | Kill/Death Ratio:",kd,true)
-            .addField("# | Top 3:",top3,true)
-            
-            return message.channel.send(ByEmbed);
-            
-        }else if (gamemode === 'duo') {
-            let Duostats = stats.duo;
-            let score = Duostats.score;
-            let kd = Duostats.kd;
-            let matches = Duostats.matches;
-            let kills = Duostats.kills;
-            let wins = Duostats.wins;
-            let top3 = Duostats.top_3;
-
-            let ByEmbed = new Discord.RichEmbed()
-            .setAuthor('Forntite Tracker Duo Stats')
-            .setTitle(data.username+"'s Stats")
-            .setColor("RANDOM")
-            .setThumbnail("https://www.teepublic.com/t-shirt/2412274-fortnite-logo-game-t-shirts")
-            .addField('# | Wins:',wins,true)
-            .addField('# | Kills:',kills,true)
-            .addField('# | Score:',score,true)
-            .addField("# | Matches:",matches,true)
-            .addField("# | Kill/Death Ratio:",kd,true)
-            .addField("# | Top 3:",top3,true)
-            
-        message.channel.send(ByEmbed);
-
-        }else if(gamemode === 'squad') {
-            let squadstats = stats.squad;
-            let score = squadstats.score;
-            let kd = squadstats.kd;
-            let matches = squadstats.matches;
-            let kills = squadstats.kills;
-            let wins = squadstats.wins;
-            let top3 = squadstats.top_3;
-            
-            let ByEmbed = new Discord.RichEmbed()
-            .setAuthor('Forntite Tracker Squad Stats')
-            .setTitle(data.username+"'s Stats")
-            .setColor("RANDOM")
-            .setThumbnail("https://www.teepublic.com/t-shirt/2412274-fortnite-logo-game-t-shirts")
-            .addField('# | Wins:',wins,true)
-            .addField('# | Kills:',kills,true)
-            .addField('# | Score:',score,true)
-            .addField("# | Matches:",matches,true)
-            .addField("# | Kill/Death Ratio:",kd,true)
-            .addField("# | Top 3:",top3,true)
-            
-            return message.channel.send(ByEmbed);
-            
-        }else {
-            
-        
-        let lifetime = stats.lifetime;
-        let score = lifetime[6]['Score'];
-        let mplayed = lifetime[7]['Matches Played'];
-        let wins = lifetime[8]['Wins'];
-        let winper = lifetime[9]['Win%'];
-        let kills = lifetime[10]['Kills'];
-        let kd = lifetime[11]['K/d'];
-        
-                    let ByEmbed = new Discord.RichEmbed()
-            .setAuthor('Forntite Tracker Duo Stats')
-            .setTitle(data.username+"'s Stats")
-            .setColor("RANDOM")
-            .setThumbnail("https://www.teepublic.com/t-shirt/2412274-fortnite-logo-game-t-shirts")
-            .addField('# | Wins:',wins,true)
-            .addField('# | Kills:',kills,true)
-            .addField('# | Score:',score,true)
-            .addField("# | Matches:",mplayed,true)
-            .addField("# | Kill/Death Ratio:",kd,true)
-            .addField("# | Win Percentage:",winper,true)
-            
-        message.channel.send(ByEmbed);
-    }
-    })
-    }
-});
 
 client.on('message', message => {
     if(message.content.startsWith('$help')) {
@@ -556,7 +422,7 @@ $clear - مسح الشات :hourglass_flowing_sand:
 $role - لأعطاء رتبة لـ أحد الأعضاء :key: 
 $rerole - لآزالة الرتبة من أحد الاعضاء 
 $move - لنقل الاعضاء الي رومك  :scales: 
-$crooms - لحذف اي روم صوتي اسمه \`TL is here\`
+
 
   **      `)
     message.author.send(embed)
@@ -569,14 +435,18 @@ client.on('message', message => {
 .setColor('RANDOM')
         .setDescription(`**
 Other's :briefcase:
-لدعوة البوت - $inv :pen_fountain: 
-أو من خلال الرابط : https://discordapp.com/oauth2/authorize/?permissions=268443710&scope=bot&client_id=465885551329804288  :sparkles: 
-        
+$inv - لدعوة البوت :pen_fountain: 
+$sup - الدعم الفني :nut_and_bolt:         
   **      `)
     message.author.send(embed)
 }
 });
 
+client.on('message', message => {
+    if(message.content.startsWith('$sup')) {
+message.author.send('https://discord.gg/dGkWV7Z')
+    }
+});
 
 const sql = require("sqlite");
 client.on("message", async message => {
@@ -607,12 +477,7 @@ message.channel.send(image)
     }
 });
 
-client.on('guildCreate', guild => {
-  var embed = new Discord.RichEmbed()
-  .setColor(0x5500ff)
-  .setDescription(`**شكراً لك لإضافه البوت الى سيرفرك**`)
-      guild.owner.send(embed)
-});
+
 
 
   client.on('message', message => {
@@ -633,18 +498,17 @@ client.on('guildCreate', guild => {
             message.channel.send({embed: {
                 color: 3447003,
                 author: {
-                  name: 'S Bot translate',
+                  name: ':fog: Translate.',
                   icon_url: client.user.avatarURL
                 },
                 fields: [{
-                    name: "S Bot",
-                    value: `**من:** ${res.from.language.iso}\n\`\`\`${finalToTrans}\`\`\`\n**الي: **${language}\n\`\`\`${res.text}\`\`\``
+                    value: `**من اللغه : ** ${res.from.language.iso}\n\`\`\`${finalToTrans}\`\`\`\n**آلي اللغة :**${language}\n\`\`\`${res.text}\`\`\``
                   }
                 ],
                 timestamp: new Date(),
                 footer: {
                   icon_url: client.user.avatarURL,
-                  text: "S Bot"
+                  text: "S Bot © | 2018."
                 }
               }
             });
@@ -698,10 +562,10 @@ client.on("message", message => {
 			return	message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من الكل رتبة**');
 		} else if( args[0].toLowerCase() == "bots" ){
 			message.guild.members.filter(m=>m.user.bot).forEach(m=>m.removeRole(role1))
-			return	message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من البوتات رتبة**');
+			return	message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب رتبة**');
 		} else if( args[0].toLowerCase() == "humans" ){
 			message.guild.members.filter(m=>!m.user.bot).forEach(m=>m.removeRole(role1))
-			return	message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من البشريين رتبة**');
+			return	message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب  رتبة**');
 		} 	
 	} else {
 		if( !args[0] ) return message.reply( '**:x: يرجى وضع الشخص المراد اعطائها الرتبة**' );
@@ -1054,7 +918,7 @@ message.channel.send(`This avatar For ${user} link : ${user.avatarURL}`);
             .setColor("c91616")
             .setThumbnail(`${message.author.avatarURL}`)
             .setAuthor(message.author.username, message.author.avatarURL)
-        .setFooter(`${message.guild.name} `)
+        .setFooter(` S Bot © | 2018.`)
      message.channel.send(embed500)
    
        
@@ -1100,7 +964,7 @@ message.react("❌")
 
    const math = require('math-expression-evaluator');   
 client.on('message', message => {
-if (message.content.startsWith(prefix + 'calc')) {
+if (message.content.startsWith(prefix + 'cal')) {
     if(!message.channel.guild) return message.reply(' Error : \` Guild Command \`');
            var Canvas = module.require('canvas');
            var jimp = module.require('jimp');
@@ -1199,7 +1063,7 @@ client.on('message', message => {
           .setAuthor(message.author.tag, message.author.avatarURL)
           .setDescription(`**لقد وجد البوت ${message.guild.members.filter(m=>m.user.bot).size} بوت في السيرفر :electric_plug: **
 ${botssize.join('\n')}`)
-.setFooter('S Bot','https://cdn.discordapp.com/avatars/465885551329804288/55614337cfb9813916a60383469736d9.jpg?size=128')
+.setFooter(` S Bot © | 2018.`)
 .setTimestamp();
 message.channel.send(embed)
 
@@ -1221,7 +1085,35 @@ client.on('message', message => {
          
      });
 
+client.on('message',async message => {
+  if(message.content.startsWith(prefix + "id")) {
+    if(message.author.bot) return;
+    if(message.channel.type === 'dm') return;
+      message.guild.fetchInvites().then(invs => {
+    let user = message.author;
+    let personalInvites = invs.filter(i => i.inviter.id === user.id);
+    let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
+    const millis = new Date().getTime() - message.author.createdAt.getTime();
+    const noww = new Date();
+    dateFormat(noww, 'dddd, mmmm dS, yyyy, h:MM:ss TT');
+    const created = millis / 1000 / 60 / 60 / 24;
+    const milliss = new Date().getTime() - message.guild.member(message.author).joinedAt.getTime();
+    const nows = new Date();
+    dateFormat(nows, 'dddd, mmmm dS, yyyy, h:MM:ss TT');
+    const joined = milliss / 1000 / 60 / 60 / 24;
+    let embed = new Discord.RichEmbed()
+    .setAuthor(message.author.username, message.author.avatarURL)
+    .setColor('#36393e')
+    .setThumbnail(message.author.avatarURL)
+    .addField('» مضى على دخولك الدسكورد', `${created.toFixed(0)} يومّا`,true)
+    .addField('» مضى على دخولك السيرفر', `${joined.toFixed(0)} يومّا`,true)
+    .addField('» دعوات',inviteCount,true)
+    .setFooter(' S Bot © | 2018.');
 
+    message.channel.send(embed);
+  });
+  }
+});
 
 
 client.login(process.env.BOT_TOKEN);
