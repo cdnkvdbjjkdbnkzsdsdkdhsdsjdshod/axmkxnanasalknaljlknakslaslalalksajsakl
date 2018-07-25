@@ -15,7 +15,7 @@ client.on('message', message => {
 
 const ms = require("ms");
 var fs = require('fs');
-const dateFormat = require('date-format');
+
 const moment = require('moment');
 
 
@@ -1084,7 +1084,7 @@ client.on('message', message => {
 
          
      });
-
+const dateFormat = require('dateformat');
 client.on('message',async message => {
   if(message.content.startsWith(prefix + "id")) {
     if(message.author.bot) return;
