@@ -1184,8 +1184,7 @@ client.on('message',async message => {
   });
   }
 });
-
-var temp = {};
+const temp = {};
 client.on('message', async message => {
 if(message.channel.type === "dm") return;
 if(message.author.bot) return;
@@ -1199,7 +1198,7 @@ if(message.author.bot) return;
   var ggg= message.guild.createChannel('click here', 'category').then(cg => {
    var ccc =message.guild.createChannel('click here', 'voice').then(ch => {
         ch.setParent(cg)
-    messge.channel.send('**Done ,**')
+    message.channel.send('**Done ,**')
 client.on('message' , message => {
  if(message.content === '$temp off') {
      if(!message.member.hasPermission(`MANAGE_GUILD`)) return;
@@ -1220,11 +1219,9 @@ client.on('message' , message => {
     message.channel.send(`**Temp Rooms Time Change To \`${newTime}\`**`);
   }
 });
-
     client.on('voiceStateUpdate', (old, neww) => {
     let newUserChannel = neww.voiceChannel
     let oldUserChannel = old.voiceChannel
-    let timee = 3000000;
     temp[message.guild.id].category = cg.id
     temp[message.guild.id].channel = ch.id
     let channel = temp[message.guild.id].channel
@@ -1253,8 +1250,8 @@ if(!neww.voiceChannel) {
 						               neww.setVoiceChannel(c)
 
 		})
-                                         client.channels.get(channel).overwritePermissions(neww, {
-													 CONNECT:false,
+                                        client.channels.get(channel).overwritePermissions(neww, {
+										 CONNECT:false,
 							             SPEAK:false
 		})
 
@@ -1266,7 +1263,7 @@ if(!neww.voiceChannel) {
 })
 })
 }
-
 });
+
 
 client.login(process.env.BOT_TOKEN);
