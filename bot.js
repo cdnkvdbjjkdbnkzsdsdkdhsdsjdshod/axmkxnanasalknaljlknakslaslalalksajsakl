@@ -316,15 +316,17 @@ client.on("message", message => {
         if(!message.member.hasPermission("MANAGE_GUILD")) return message.channel.send("**ليس لديك البرمشن المطلوب لاستخدام هذا الامر :x:**");
         const embed = new Discord.RichEmbed()
         .setAuthor(message.guild.name, message.guild.iconURL)
+        .setThumbnail(message.guild.iconURL)
         .setColor("RANDOM")
 .setDescription(`**
-مالك السيرفر :key:                              الأيدي الخاص بالسيرفر :radio_button:
-${message.guild.owner.user.username}             \`${message.guild.id}\`
+مالك السيرفر :key: \` ${message.guild.owner.user.username} \`                                        
+الأيدي الخاص بالسيرفر :radio_button:  \`${message.guild.id}\`
+عدد اعضاء السيرفر :bar_chart: \` ${message.guild.memberCount}\`
                                   عدد رومات السيرفر :books:
 \`#\`${message.guild.channels.filter(m => m.type === 'text').size} \`🔈\`${message.guild.channels.filter(m => m.type === 'voice').size}
 عدد الرتب :straight_ruler: 
 ${message.guild.roles.size}
-**  `)
+  `)
         message.channel.send({embed:embed})
     }
 });
