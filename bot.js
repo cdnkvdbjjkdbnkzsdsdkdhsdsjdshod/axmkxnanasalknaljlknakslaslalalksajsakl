@@ -429,7 +429,7 @@ hours = 12;
 }
 
   var filter = m => m.author.id === message.author.id;
-  if(message.content.startsWith(prefix + "giveaway")) {
+  if(message.content.startsWith(prefix + "$giveaway")) {
      //return message.channel.send(':heavy_multiplication_x:| **هذا الامر معطل حاليا.. ``حاول في وقت لاحق``**');
     if(!message.guild.member(message.author).hasPermission('MANAGE_GUILD')) return message.channel.send(':heavy_multiplication_x:| **يجب أن يكون لديك خاصية التعديل على السيرفر**');
     message.channel.send(`:eight_pointed_black_star:| **Send ID channel For the Giveaway**`).then(msg => {
@@ -438,7 +438,7 @@ hours = 12;
         time: 20000,
         errors: ['time']
       }).then(collected => {
-        let room = message.guild.channels.get(collected.first().content);
+        let room = message.guild.channels.get(collected.first().content) || message.guild.channels.find('name' , collected.first().content);
         if(!room) return message.channel.send(':heavy_multiplication_x:| **i Found It :(**');
         room = collected.first().content;
         collected.first().delete();
@@ -463,9 +463,9 @@ hours = 12;
                 message.delete();
                 try {
                   let giveEmbed = new Discord.RichEmbed()
-                  .setDescription(`**${title}** \nReact Whit 🎉 To Enter! \n**Time remaining: Minutes :${duration / 60000}**\n **Created at :** ${hours}:${minutes}:${seconds} ${suffix}`)
+                  .setDescription(`**${title}** \nReact With 🎉 To Enter! \n**Time remaining:${duration / 60000} Minutes**\n **Created at :** ${hours}:${minutes}:${seconds} ${suffix}`)
                   .setFooter(message.author.username, message.author.avatarURL);
-                  message.guild.channels.get(room).send(' :heavy_check_mark: **Giveaway Created** :heavy_check_mark:' , {embed: giveEmbed}).then(m => {
+                  message.guild.channels.get(room.id).send(' :heavy_check_mark: **Giveaway Created** :heavy_check_mark:' , {embed: giveEmbed}).then(m => {
                      let re = m.react('🎉');
                      setTimeout(() => {
                        let users = m.reactions.get("🎉").users;
@@ -477,7 +477,7 @@ hours = 12;
                        .addField('Giveaway End !🎉',`Winners : ${gFilter} \nEned at:`)
                        .setTimestamp()
 					 m.edit('** 🎉 GIVEAWAY ENDED 🎉**' , {embed: endEmbed});
-					message.guild.channels.get(room).send(`**Congratulations ${gFilter}! You won The \`${title}\`**` , {embed: {}})
+					message.guild.channels.get(room.id).send(`**Congratulations ${gFilter}! You won The \`${title}\`**` , {embed: {}})
                      },duration);
                    });
                 } catch(e) {
