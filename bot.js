@@ -1199,16 +1199,6 @@ if(message.author.bot) return;
   var ggg= message.guild.createChannel('click here', 'category').then(cg => {
    var ccc =message.guild.createChannel('click here', 'voice').then(ch => {
         ch.setParent(cg)
-	    if(!ggg) {
-		ccc.delete();
-		return
-		message.reply(`** The Category Removed I will delete The temp channel :(**`);
-		}
-	   if(!ccc) {
-		ggg.delete();
-		return
-		message.reply(`** The Channel Removed I will delete The Category :(**`);
-		}
     messge.channel.send('**Done ,**')
 client.on('message' , message => {
  if(message.content === '$temp off') {
