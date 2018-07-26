@@ -1265,7 +1265,7 @@ if(!neww.voiceChannel) {
 
 })
 })
-	}
+}
 
 });
 
