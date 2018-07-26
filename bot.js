@@ -1240,7 +1240,7 @@ if(!neww.voiceChannel) {
 							             SPEAK:true
 		})
 }
-  }, temp[neww.guild.id].time * timee);
+  }, temp[neww.guild.id].time);
 						 			 c.overwritePermissions(neww, {
 										 CONNECT:true,
 							             SPEAK:true,
