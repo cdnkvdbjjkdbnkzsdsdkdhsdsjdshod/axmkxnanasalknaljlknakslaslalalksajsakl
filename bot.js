@@ -238,7 +238,6 @@ var v1 = new Discord.RichEmbed()
 var heroo = new Discord.RichEmbed()
 .setColor('#6a109d')
 .setTimestamp(new Date())
-.setThumbnail(client.user.avatarURL)
 .setTitle('S Bot Info')
 .setURL('https://discordapp.com/oauth2/authorize/?permissions=268443710&scope=bot&client_id=465885551329804288')
 .setAuthor(client.user.username,client.user.avatarURL)
@@ -320,7 +319,6 @@ client.on("message", message => {
         .setColor("RANDOM")
 .setDescription(`**
 مالك السيرفر :key: \` ${message.guild.owner.user.username} \`                                        
-الأيدي الخاص بالسيرفر :radio_button:  \`${message.guild.id}\`
 عدد اعضاء السيرفر :bar_chart: \` ${message.guild.memberCount}\`
                                   عدد رومات السيرفر :books:
 \`#\`${message.guild.channels.filter(m => m.type === 'text').size} \`🔈\`${message.guild.channels.filter(m => m.type === 'voice').size}
