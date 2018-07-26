@@ -329,7 +329,7 @@ ${message.guild.roles.size}
     }
 });
 
-
+//.
 
 client.on('guildCreate', guild => {
 var message = "zg";
