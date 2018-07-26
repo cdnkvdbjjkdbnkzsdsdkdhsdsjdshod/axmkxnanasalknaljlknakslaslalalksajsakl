@@ -474,7 +474,7 @@ hours = 12;
                        let endEmbed = new Discord.RichEmbed()
                        .setAuthor(message.author.username, message.author.avatarURL)
                        .setTitle(title)
-                       .addField('Giveaway End !🎉',`Winners : ${gFilter} \nEned at:`)
+                       .addField('Giveaway Ended !🎉',`Winners : ${gFilter} \nEneded at:`)
                        .setTimestamp()
 					 m.edit('** 🎉 GIVEAWAY ENDED 🎉**' , {embed: endEmbed});
 					message.guild.channels.get(room.id).send(`**Congratulations ${gFilter}! You won The \`${title}\`**` , {embed: {}})
