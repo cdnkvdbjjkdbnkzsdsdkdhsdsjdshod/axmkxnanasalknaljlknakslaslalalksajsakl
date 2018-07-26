@@ -499,16 +499,19 @@ client.on('message', message => {
 .setColor('RANDOM')
         .setDescription(`**
 Admin's Commands. :wrench: 
-$ban - أمر الباند :no_entry:
-$kick - أمر الكيك  :outbox_tray:
-$cc - صنع ألوان :heart:
-$bc - البرودكاست :mega:
-$clear - مسح الشات :hourglass_flowing_sand: 
-$role - لأعطاء رتبة لـ أحد الأعضاء :key: 
-$rerole - لآزالة الرتبة من أحد الاعضاء 
-$move - لنقل الاعضاء الي رومك  :scales: 
-$giveaway - عمل قيف أواي :tada:
-
+$ban <@mentoin> <Reason> - أمر الباند :no_entry:
+$kick <@mentoin> <Reason> - أمر الكيك  :outbox_tray:
+$cc <number> - صنع ألوان :heart:
+$bc <message> - البرودكاست :mega:
+$clear <number> - مسح الشات :hourglass_flowing_sand: 
+$role <@mentoin> <role name> - لأعطاء رتبة لـ أحد الأعضاء :key: 
+$rerole <@mentoin> <role name> - لآزالة الرتبة من أحد الاعضاء 
+$move <@mentoin> - لنقل عضو الي روم الصوتي حقك  :scales: 
+$moveall  - لنقل جميع الاعضاء الي برومات الصوتيه الي رومك  :scales: 
+$temp on - لتفعيل الرومات الموقتة :microphone: 
+$temp off - لـ الالغاء تفعيل الرومات الموقتة :microphone: 
+$temptime <number \`1000 = 1secound>\` - لتغير وقت حذف الروم الموقت للشخص بعد خروجه :microphone:  
+$giveaway - قيف اواي :tada:
 
   **      `)
     message.author.send(embed)
@@ -1280,6 +1283,21 @@ if(!neww.voiceChannel) {
 })
 }
 });
+  client.on('message', message => {
+    if(message.content.startsWith(prefix + 'moveall')) {
+     if (!message.member.hasPermission("MOVE_MEMBERS")) return message.channel.send('**لايوجد لديك صلاحية سحب الأعضاء**');
+       if(!message.guild.member(client.user).hasPermission("MOVE_MEMBERS")) return message.reply("**لايوجد لدي صلاحية السحب**");
+    if (message.member.voiceChannel == null) return message.channel.send(`**الرجاء الدخول لروم صوتي**`)
+     var author = message.member.voiceChannelID;
+     var m = message.guild.members.filter(m=>m.voiceChannel)
+     message.guild.members.filter(m=>m.voiceChannel).forEach(m => {
+     m.setVoiceChannel(author)
+     })
+     message.channel.send(`**تم سحب جميع الأعضاء الي الروم الصوتي حقك.**`)
+
+
+     }
+       });
 
 
 client.login(process.env.BOT_TOKEN);
