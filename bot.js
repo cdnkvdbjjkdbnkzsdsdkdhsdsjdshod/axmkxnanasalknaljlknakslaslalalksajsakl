@@ -324,7 +324,7 @@ client.on("message", message => {
 \`#\`${message.guild.channels.filter(m => m.type === 'text').size} \`🔈\`${message.guild.channels.filter(m => m.type === 'voice').size}
 عدد الرتب :straight_ruler: 
 ${message.guild.roles.size}
-  `)
+**  `)
         message.channel.send({embed:embed})
     }
 });
