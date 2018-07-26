@@ -430,7 +430,7 @@ hours = 12;
 }
 
   var filter = m => m.author.id === message.author.id;
-  if(message.content.startsWith(prefix + "$giveaway")) {
+  if(message.content.startsWith(prefix + "giveaway")) {
      //return message.channel.send(':heavy_multiplication_x:| **هذا الامر معطل حاليا.. ``حاول في وقت لاحق``**');
     if(!message.guild.member(message.author).hasPermission('MANAGE_GUILD')) return message.channel.send(':heavy_multiplication_x:| **يجب أن يكون لديك خاصية التعديل على السيرفر**');
     message.channel.send(`:eight_pointed_black_star:| **Send ID channel For the Giveaway**`).then(msg => {
