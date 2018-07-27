@@ -211,8 +211,8 @@ client.on('message',async message => {
     dateFormat(noww, 'dddd, mmmm dS, yyyy, h:MM:ss TT');
     const createdAT = millis / 1000 / 60 / 60 / 24;
     var iMs = new Discord.RichEmbed()
-    .setAuthor(hero.user.username, hero.user.avatarURL)
-    .setTitle(`${hero.user.username} معلومات عن بوت`)
+    .setAuthor(client.user.username, client.user.avatarURL)
+    .setTitle(`${client.user.username} معلومات عن بوت`)
     .setColor('#36393e')
     .addField('» امر البوت', prefix, true)
     .addField('» الرامات المستخدمة', `${(process.memoryUsage().rss / 1048576).toFixed()} ميجا بايت`,true)
