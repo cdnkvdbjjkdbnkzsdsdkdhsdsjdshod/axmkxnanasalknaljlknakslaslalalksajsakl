@@ -192,7 +192,7 @@ client.on('message', message => {
 
 
 
-
+const hero = new Discord.Client();
 client.on('message',async message => {
   function timeCon(time) {
   let days = Math.floor(time % 31536000 / 86400)
