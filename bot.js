@@ -499,7 +499,7 @@ client.on('message', message => {
 .setColor('RANDOM')
         .setDescription(`**
 Admin's Commands. :wrench: 
-$ban -أمر الباند :no_entry:
+$ban - أمر الباند :no_entry:
 $kick - أمر الكيك  :outbox_tray:
 $cc - صنع ألوان :heart:
 $bc - البرودكاست :mega:
@@ -507,9 +507,9 @@ $clear - مسح الشات :hourglass_flowing_sand:
 $role - لأعطاء رتبة لـ أحد الأعضاء :key: 
 $rerole - لآزالة الرتبة من أحد الاعضاء 
 $move - لنقل عضو الي روم الصوتي حقك  :scales: 
-$moveall  - لنقل جميع الاعضاء الي برومات الصوتيه الي رومك  :scales: 
+$moveall  - لنقل جميع الاعضاء الي برومات الصوتيه الي رومك 
 $temp on - لتفعيل الرومات الموقتة :microphone: 
-$temp off - لـ الالغاء تفعيل الرومات الموقتة :microphone: 
+$temp off - لـ الالغاء تفعيل الرومات الموقتة 
 $giveaway - قيف اواي :tada:
 
   **      `)
