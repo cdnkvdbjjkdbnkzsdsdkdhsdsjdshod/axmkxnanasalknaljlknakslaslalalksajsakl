@@ -72,7 +72,7 @@ if (message.content.startsWith(adminprefix + 'setavatar')) {
 
 client.on('message', message => {
    let args = message.content.split(" ").slice(1);
-  if (message.content.startsWith(prefix + "serch")) {
+  if (message.content.startsWith(prefix + "search")) {
 let Embed = new Discord.RichEmbed()
         .setColor(0x36393e);
     if (!args[0]) {
@@ -463,7 +463,7 @@ hours = 12;
                 message.delete();
                 try {
                   let giveEmbed = new Discord.RichEmbed()
-                  .setDescription(`**${title}** \nReact With 🎉 To Enter! \nTime remaining:${duration / 60000} **Minutes**\n **Created at :** ${hours}:${minutes}:${seconds} ${suffix}`)
+                  .setDescription(`**${title}** \nReact With 🎉 To Enter! \nTime remaining : ${duration / 60000} **Minutes**\n **Created at :** ${hours}:${minutes}:${seconds} ${suffix}`)
                   .setFooter(message.author.username, message.author.avatarURL);
                   message.guild.channels.find("name" , room).send(' :heavy_check_mark: **Giveaway Created** :heavy_check_mark:' , {embed: giveEmbed}).then(m => {
                      let re = m.react('🎉');
@@ -474,7 +474,7 @@ hours = 12;
                        let endEmbed = new Discord.RichEmbed()
                        .setAuthor(message.author.username, message.author.avatarURL)
                        .setTitle(title)
-                       .addField('Giveaway Ended !🎉',`Winners : ${gFilter} \nEneded at:`)
+                       .addField('Giveaway Ended !🎉',`Winners : ${gFilter} \nEnded at :`)
                        .setTimestamp()
 					 m.edit('** 🎉 GIVEAWAY ENDED 🎉**' , {embed: endEmbed});
 					message.guild.channels.find("name" , room).send(`**Congratulations ${gFilter}! You won The \`${title}\`**` , {embed: {}})
@@ -499,18 +499,17 @@ client.on('message', message => {
 .setColor('RANDOM')
         .setDescription(`**
 Admin's Commands. :wrench: 
-$ban <@mentoin> <Reason> - أمر الباند :no_entry:
-$kick <@mentoin> <Reason> - أمر الكيك  :outbox_tray:
-$cc <number> - صنع ألوان :heart:
-$bc <message> - البرودكاست :mega:
-$clear <number> - مسح الشات :hourglass_flowing_sand: 
-$role <@mentoin> <role name> - لأعطاء رتبة لـ أحد الأعضاء :key: 
-$rerole <@mentoin> <role name> - لآزالة الرتبة من أحد الاعضاء 
-$move <@mentoin> - لنقل عضو الي روم الصوتي حقك  :scales: 
+$ban -أمر الباند :no_entry:
+$kick - أمر الكيك  :outbox_tray:
+$cc - صنع ألوان :heart:
+$bc - البرودكاست :mega:
+$clear - مسح الشات :hourglass_flowing_sand: 
+$role - لأعطاء رتبة لـ أحد الأعضاء :key: 
+$rerole - لآزالة الرتبة من أحد الاعضاء 
+$move - لنقل عضو الي روم الصوتي حقك  :scales: 
 $moveall  - لنقل جميع الاعضاء الي برومات الصوتيه الي رومك  :scales: 
 $temp on - لتفعيل الرومات الموقتة :microphone: 
 $temp off - لـ الالغاء تفعيل الرومات الموقتة :microphone: 
-$temptime <number \`1000 = 1secound>\` - لتغير وقت حذف الروم الموقت للشخص بعد خروجه :microphone:  
 $giveaway - قيف اواي :tada:
 
   **      `)
