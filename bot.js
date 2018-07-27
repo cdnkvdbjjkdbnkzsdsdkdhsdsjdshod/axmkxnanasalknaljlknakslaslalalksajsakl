@@ -193,69 +193,39 @@ client.on('message', message => {
 
 
 
-client.on("message",function(message) {
-    if(message.content.startsWith(prefix + 'stats')) {
-        var uptime = client.uptime;
-
-    var days = 0;
-    var hours = 0;
-    var minutes = 0;
-    var seconds = 0;
-    var notCompleted = true;
-
-    while (notCompleted) {
-
-        if (uptime >= 8.64e+7) {
-
-            days++;
-            uptime -= 8.64e+7;
-
-        } else if (uptime >= 3.6e+6) {
-
-            hours++;
-            uptime -= 3.6e+6;
-
-        } else if (uptime >= 60000) {
-
-            minutes++;
-            uptime -= 60000;
-
-        } else if (uptime >= 1000) {
-            seconds++;
-            uptime -= 1000;
-
-        }
-
-        if (uptime < 1000)  notCompleted = false;
-
-    }
-
-var v1 = new Discord.RichEmbed()
-  v1.setTimestamp(new Date())
-  v1.setColor("#6a109d")
-  v1.setDescription('***__ انتظر .. جاري الحصول علي البيانات __***')
-  v1.setFooter("# | S TeaM |")
-var heroo = new Discord.RichEmbed()
-.setColor('#6a109d')
-.setTimestamp(new Date())
-.setTitle('S Bot Info')
-.setURL('https://discordapp.com/oauth2/authorize/?permissions=268443710&scope=bot&client_id=465885551329804288')
-.setAuthor(client.user.username,client.user.avatarURL)
-.addField("**البرفكس** :",`**[ ${prefix} ]**`,true)
-.addField("**السيرفرات** :","**[ "+client.guilds.size+" ]**",true)
-.addField("**القنوات** :","**[ "+client.channels.size+" ]**",true)
-.addField("**المستخدمين** :","**[ "+client.users.size+" ]**",true)
-.addField("**اسم البوت** : ","**[ "+client.user.username+" ]**",true)
-.addField("**ايدي البوت **:","**[ "+client.user.id+" ]**",true)
-.addField("**الحجم المستخدم** :",`**[ ${(process.memoryUsage().rss / 1048576).toFixed()}MB ]**`,true)
-.addField("**موعد الاقلاع** :",`**[** **Days:** \`${days}\` **Hours:** \`${hours}\` **Minutes:** \`${minutes}\` **Seconds:** \`${seconds}\` **]**`,true)
-.setFooter("S TeaM  |");
-  message.channel.send({embed:v1}).then(m => {
-      setTimeout(() => {
-         m.edit({embed:heroo});
-      },3000);
-  });
-}
+client.on('message',async message => {
+  function timeCon(time) {
+  let days = Math.floor(time % 31536000 / 86400)
+  let hours = Math.floor(time % 31536000 % 86400 / 3600)
+  let minutes = Math.floor(time % 31536000 % 86400 % 3600 / 60)
+  let seconds = Math.round(time % 31536000 % 86400 % 3600 % 60)
+  days = days > 9 ? days : '0' + days
+  hours = hours > 9 ? hours : '0' + hours
+  minutes = minutes > 9 ? minutes : '0' + minutes
+  seconds = seconds > 9 ? seconds : '0' + seconds
+  return `${days > 0 ? `${days}:` : ''}${(hours || days) > 0 ? `${hours}:` : ''}${minutes}:${seconds}`
+  };
+  if(message.content.startsWith(prefix + "bot")) {
+    const millis = new Date().getTime() - client.user.createdAt.getTime();
+    const noww = new Date();
+    dateFormat(noww, 'dddd, mmmm dS, yyyy, h:MM:ss TT');
+    const createdAT = millis / 1000 / 60 / 60 / 24;
+    var iMs = new Discord.RichEmbed()
+    .setAuthor(hero.user.username, hero.user.avatarURL)
+    .setTitle(`${hero.user.username} معلومات عن بوت`)
+    .setColor('#36393e')
+    .addField('» امر البوت', prefix, true)
+    .addField('» الرامات المستخدمة', `${(process.memoryUsage().rss / 1048576).toFixed()} ميجا بايت`,true)
+    .addField('» سرعة البوت', `${Math.round(client.ping)} ملي سكند`,true)
+    .addField('» اصدار التشغيل', `${process.version}`,true)
+    .addField('» اصدار الدسكورد',`v${Discord.version}`, true)
+    .addField('» تم تشغيل البوت منذ', `${timeCon(process.uptime())}`, true)
+    .addField('» السيرفرات', client.guilds.size,true)
+    .addField('» المستخدمين', client.users.size,true)
+    .addField('» صانع البوت', `${client.users.get('323885452207587329').tag} ${client.users.get('456641975932813345').tag} ${client.users.get('406143689984049152').tag} ${client.users.get('298732816995319809').tag}\n منذ ${createdAT.toFixed(0)} يومّا`,true)
+    .setFooter(`${client.user.username} :: ${new Date().toLocaleString()}`);
+    message.channel.send(iMs);
+  }
 });
 
 client.on('message', message => {
