@@ -69,6 +69,24 @@ if (message.content.startsWith(adminprefix + 'setavatar')) {
 }
 });
 
+client.on('message',async message => {
+  var prefix = "$";
+  if(message.content.startsWith(prefix + "setvoice")) {
+  if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply(':x: **ليس لديك الصلاحيات الكافية**');
+  if(!message.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return message.reply(':x: **ليس معي الصلاحيات الكافية**');
+  message.guild.createChannel(`Voice Online : [ ${message.guild.members.filter(m => m.voiceChannel).size} ]` , 'voice').then(c => {
+    console.log(`Voice online channel setup for guild: \n ${message.guild.name}`);
+    c.overwritePermissions(message.guild.id, {
+      CONNECT: false,
+      SPEAK: false
+    });
+    setInterval(() => {
+      c.setName(`Voice Online : [ ${message.guild.members.filter(m => m.voiceChannel).size} ]`)
+    },1000);
+  });
+  }
+});
+
 
 client.on('message', message => {
    let args = message.content.split(" ").slice(1);
@@ -177,7 +195,7 @@ client.on('message', message => {
 **  الرسالة : ** ${args}
         `)
          .setTimestamp()
-         .setFooter('S Bot' , 'https://cdn.discordapp.com/avatars/465885551329804288/55614337cfb9813916a60383469736d9.jpg?size=128')
+         .setFooter('S Bot')
     m.send({ embed: bc })
     msg.delete();
     })
@@ -481,6 +499,7 @@ $moveall  - لنقل جميع الاعضاء الي برومات الصوتيه 
 $temp on - لتفعيل الرومات الموقتة :microphone: 
 $temp off - لـ الالغاء تفعيل الرومات الموقتة 
 $giveaway - قيف اواي :tada:
+$setvoice - لعمل روم بآالمتصلين بالصوت في السيرفر :telephone_receiver: 
 
   **      `)
     message.author.send(embed)
