@@ -1,21 +1,6 @@
 const Discord = require('discord.js')
 const client = new Discord.Client();
 var fs = require('fs');
-const p = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
-client.on('message', message => {
-if(message.channel.type === "dm") return;
-if(message.author.bot) return;
-if(!p[message.guild.id]) p[message.guild.id] = {
-    prefix: "$"
-}
-const prefix = p[message.guild.id].prefix
-  if (message.content.startsWith(prefix + "setprefix")) {
-    if(!message.member.hasPermission(`MANAGE_GUILD`)) return;
-    let newPrefix = message.content.split(' ').slice(1).join(" ")
-    if(!newPrefix) return message.reply(`**${prefix}setprefix <prefix>**`)
-    p[message.guild.id].prefix = newPrefix
-    message.channel.send(`**Update prefix For ${message.guild.name} new prefix ${newPrefix}**`);
-}
 client.on('message', message => {
     if (message.content === 'zg') {
     	message.reply('pong');
@@ -1305,11 +1290,5 @@ if(!neww.voiceChannel) {
 
      }
        });
-// امسح هذي علشان يشتغل
-شسيتنشمسيشسنميتشسيمسشتيمسشي
-// سويتها علشان البوت يسوي سبام لا تعصب عليا
-fs.writeFile("./prefixes.json", JSON.stringify(p), (err) => {
-                        if(err) console.error(err)
-                    })
 });
 client.login(process.env.BOT_TOKEN)
