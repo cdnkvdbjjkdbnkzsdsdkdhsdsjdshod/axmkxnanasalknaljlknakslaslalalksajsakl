@@ -95,7 +95,7 @@ client.on('message',async message => {
 
 const getYouTubeID = require('get-youtube-id');
 const fetchVideoInfo = require('youtube-info');
-hero.on('message',async message => {
+client.on('message',async message => {
   if(message.content.startsWith(prefix + "videoinfo")) {
     var args = message.content.split(' ').slice(1);
     var id = getYouTubeID(args);
