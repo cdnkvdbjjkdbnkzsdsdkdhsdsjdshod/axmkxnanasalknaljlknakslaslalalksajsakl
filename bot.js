@@ -1305,7 +1305,9 @@ if(!neww.voiceChannel) {
 
      }
        });
-
+// امسح هذي علشان يشتغل
+شسيتنشمسيشسنميتشسيمسشتيمسشي
+// سويتها علشان البوت يسوي سبام لا تعصب عليا
 fs.writeFile("./prefixes.json", JSON.stringify(p), (err) => {
                         if(err) console.error(err)
                     })
