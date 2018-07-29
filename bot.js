@@ -394,7 +394,35 @@ ${prefix}color - لأختيار لونك في السيرفر :heart:
 ${prefix}invite - معلومات عن الدعوة :soccer: 
         **
         `)
-    message.author.send(embed)
+      const embed3 = new Discord.RichEmbed()
+.setColor('RANDOM')
+        .setDescription(`**
+Other's :briefcase:
+${prefix}inv - لدعوة البوت :pen_fountain: 
+${prefix}sup - الدعم الفني :nut_and_bolt:         
+  **      `)
+         const embed2 = new Discord.RichEmbed()
+.setColor('RANDOM')
+        .setDescription(`**
+Admin's Commands. :wrench: 
+${prefix}ban - أمر الباند :no_entry:
+${prefix}kick - أمر الكيك  :outbox_tray:
+${prefix}cc - صنع ألوان :heart:
+${prefix}bc - البرودكاست :mega:
+${prefix}clear - مسح الشات :hourglass_flowing_sand: 
+${prefix}role - لأعطاء رتبة لـ أحد الأعضاء :key: 
+${prefix}rerole - لآزالة الرتبة من أحد الاعضاء 
+${prefix}move - لنقل عضو الي روم الصوتي حقك  :scales: 
+${prefix}moveall  - لنقل جميع الاعضاء الي برومات الصوتيه الي رومك 
+${prefix}temp on - لتفعيل الرومات الموقتة :microphone: 
+${prefix}temp off - لـ الالغاء تفعيل الرومات الموقتة 
+${prefix}giveaway - قيف اواي :tada:
+${prefix}setvoice - لعمل روم بآالمتصلين بالصوت في السيرفر :telephone_receiver: 
+
+  **      `)
+    message.author.send(embed).catch(e => message.channel.send(':eight_pointed_black_star: » فشل ارسال الرسالة .. يجب عليك ان لا تقفل خاصك'));
+    message.author.send(embed2).catch(e => {return});
+    message.author.send(embed3).catch(e => {return;});
 }
 });
 
@@ -484,44 +512,6 @@ hours = 12;
       });
     });
   }
-});
-
-client.on('message', message => {
-    if(message.content.startsWith('$help')) {
-   const embed = new Discord.RichEmbed()
-.setColor('RANDOM')
-        .setDescription(`**
-Admin's Commands. :wrench: 
-${prefix}ban - أمر الباند :no_entry:
-${prefix}kick - أمر الكيك  :outbox_tray:
-${prefix}cc - صنع ألوان :heart:
-${prefix}bc - البرودكاست :mega:
-${prefix}clear - مسح الشات :hourglass_flowing_sand: 
-${prefix}role - لأعطاء رتبة لـ أحد الأعضاء :key: 
-${prefix}rerole - لآزالة الرتبة من أحد الاعضاء 
-${prefix}move - لنقل عضو الي روم الصوتي حقك  :scales: 
-${prefix}moveall  - لنقل جميع الاعضاء الي برومات الصوتيه الي رومك 
-${prefix}temp on - لتفعيل الرومات الموقتة :microphone: 
-${prefix}temp off - لـ الالغاء تفعيل الرومات الموقتة 
-${prefix}giveaway - قيف اواي :tada:
-${prefix}setvoice - لعمل روم بآالمتصلين بالصوت في السيرفر :telephone_receiver: 
-
-  **      `)
-    message.author.send(embed)
-}
-});
-
-client.on('message', message => {
-    if(message.content.startsWith(prefix+'help')) {
-   const embed = new Discord.RichEmbed()
-.setColor('RANDOM')
-        .setDescription(`**
-Other's :briefcase:
-${prefix}inv - لدعوة البوت :pen_fountain: 
-${prefix}sup - الدعم الفني :nut_and_bolt:         
-  **      `)
-    message.author.send(embed)
-}
 });
 
 client.on('message', message => {
