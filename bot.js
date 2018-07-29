@@ -1291,5 +1291,4 @@ if(!neww.voiceChannel) {
 
      }
        });
-});
 client.login(process.env.BOT_TOKEN)
