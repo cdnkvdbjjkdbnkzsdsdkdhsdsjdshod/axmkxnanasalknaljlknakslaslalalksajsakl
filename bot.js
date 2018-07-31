@@ -164,7 +164,7 @@ client.on('message', message => {
                 .setTimestamp()
     message.channel.send(embed)      
 }})
-
+const hero = new Discord.Client();
 hero.on('message', async message => {
   if(message.content.startsWith(prefix + "bc")) {
     if(message.author.id === hero.user.id) return;
@@ -204,7 +204,7 @@ hero.on('message', async message => {
 });
 
 
-const hero = new Discord.Client();
+
 client.on('message',async message => {
   function timeCon(time) {
   let days = Math.floor(time % 31536000 / 86400)
