@@ -300,11 +300,11 @@ client.on("message", message => {
         .setThumbnail(message.guild.iconURL)
         .setColor("RANDOM")
 .setDescription(`**
-:eight_pointed_black_star: » مالك السيرفر \` ${message.guild.owner.user.username} \`                                        
-:eight_pointed_black_star: » عدد الأغضاء\` ${message.guild.memberCount}\`
-:eight_pointed_black_star: » عدد الرومات \`${message.guild.channels.size}\`
+:crown: » Server Owner  \` ${message.guild.owner.user.username} \`                                        
+:bar_chart: » Members \` ${message.guild.memberCount}\`
+:books: » Channels  \`${message.guild.channels.size}\`
 \`#\`${message.guild.channels.filter(m => m.type === 'text').size} \`🔈\`${message.guild.channels.filter(m => m.type === 'voice').size}
-:eight_pointed_black_star: » عدد الرومات ${message.guild.roles.size}
+:straight_ruler:  » Roles  ${message.guild.roles.size}
 **  `)
         message.channel.send({embed:embed})
     }
