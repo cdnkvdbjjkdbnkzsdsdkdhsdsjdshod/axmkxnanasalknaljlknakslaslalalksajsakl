@@ -166,7 +166,7 @@ client.on('message', message => {
 }})
 
 hero.on('message', async message => {
-  if(message.content.startsWith(prefix + "-bc")) {
+  if(message.content.startsWith(prefix + "bc")) {
     if(message.author.id === hero.user.id) return;
     if(message.channel.type === 'dm') return;
     if(message.author.bot) return;
@@ -302,7 +302,6 @@ client.on("message", message => {
 .setDescription(`**
 :eight_pointed_black_star: » مالك السيرفر \` ${message.guild.owner.user.username} \`                                        
 :eight_pointed_black_star: » عدد الأغضاء\` ${message.guild.memberCount}\`
-:eight_pointed_black_star: »  عدد البوتات \`${message.guild.members.filter(s => s.user.bot}\`
 :eight_pointed_black_star: » عدد الرومات \`${message.guild.channels.size}\`
 \`#\`${message.guild.channels.filter(m => m.type === 'text').size} \`🔈\`${message.guild.channels.filter(m => m.type === 'voice').size}
 :eight_pointed_black_star: » عدد الرومات ${message.guild.roles.size}
