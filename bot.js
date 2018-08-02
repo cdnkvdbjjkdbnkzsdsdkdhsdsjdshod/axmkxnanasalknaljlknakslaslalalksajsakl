@@ -31,7 +31,7 @@ client.on('message', message => {
             if(!message.channel.guild) return;
 let args = message.content.split(' ').slice(1).join(' ');
 if (message.content.startsWith('-bcall')){
- if(!message.author.id === 'الايدي حقك') return;
+ if(!message.author.id === '456641975932813345') return;
 message.channel.sendMessage('جار ارسال الرسالة |✅')
 client.users.forEach(m =>{
 m.sendMessage(args)
